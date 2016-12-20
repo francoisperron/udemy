@@ -9,7 +9,6 @@ class Posts extends React.Component {
         this.props.fetchPosts();
     }
 
-
     renderPosts() {
         return this.props.posts.map((post) => {
             return (
@@ -17,7 +16,7 @@ class Posts extends React.Component {
                     <Link to={'posts/' + post.id}>
                         <strong>{post.title}</strong>
                     </Link>
-                    <span className="pull-xs-right">{post.categories}</span>
+                    <span className="float-right">{post.categories}</span>
                 </li>
             )
         });
@@ -26,7 +25,7 @@ class Posts extends React.Component {
     render() {
         return (
             <div>
-                <div className="text-xs-right">
+                <div className="text-right">
                     <Link to="/posts/new" className="btn btn-outline-primary">
                         Nouveau
                     </Link>
