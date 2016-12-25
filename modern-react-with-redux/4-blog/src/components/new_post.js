@@ -3,19 +3,40 @@ import {Link} from 'react-router';
 import {reduxForm} from 'redux-form';
 import {createPost} from '../actions/index';
 
+const fields = [
+    {name: 'title', type: 'input', label: 'Titre', errorMessage: 'Titre manquant'},
+    {name: 'categories', type: 'input', label: 'Catégories', errorMessage: 'Categories manquantes'},
+    {name: 'content', type: 'textarea', label: 'Message', errorMessage: 'Message manquant'},
+];
+//['title', 'categories', 'content'];
+
 class NewPost extends React.Component {
     static contextTypes = {
-      router: React.PropTypes.object
+        router: React.PropTypes.object
     };
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
+        this.renderField = this.renderField.bind(this);
     }
 
-    onSubmit(props){
-        this.props.createPost(props).then(() => { this.context.router.push('/')});
+    onSubmit(props) {
+        this.props.createPost(props).then(() => {
+            this.context.router.push('/')
+        });
     };
+
+    renderField(field) {
+        const formField = this.props.fields[field.name];
+        return (
+            <div key={field.name} className={`form-group ${formField.touched && formField.invalid ? 'has-danger' : ''}`}>
+                <label>{field.label}</label>
+                <field.type type="text" className="form-control form-control-danger" {...formField}/>
+                <div className="text-help text-danger small take-place">{formField.touched ? formField.error : ''}</div>
+            </div>
+        )
+    }
 
     render() {
         const {fields: {title, categories, content}, handleSubmit} = this.props;
@@ -23,21 +44,7 @@ class NewPost extends React.Component {
         return (
             <form onSubmit={handleSubmit(this.onSubmit)}>
                 <h3 className="">Nouveau blog</h3>
-                <div className={`form-group ${title.touched && title.invalid ? 'has-danger' : ''}`}>
-                    <label>Titre</label>
-                    <input type="text" className="form-control form-control-danger" {...title}/>
-                    <div className="text-help text-danger small take-place">{title.touched ? title.error : ''}</div>
-                </div>
-                <div className={`form-group ${categories.touched && categories.invalid ? 'has-danger' : ''}`}>
-                    <label>Catégories</label>
-                    <input type="text" className="form-control form-control-danger" {...categories}/>
-                    <div className="text-help text-danger small take-place">{categories.touched ? categories.error : ''}</div>
-                </div>
-                <div className={`form-group ${content.touched && content.invalid ? 'has-danger' : ''}`}>
-                    <label>Message</label>
-                    <textarea className="form-control form-control-danger" {...content}/>
-                    <div className="form-control-feedback small take-place">{content.touched ? content.error : ''}</div>
-                </div>
+                {fields.map(f => this.renderField(f))}
                 <button type="submit" className="btn btn-outline-primary">Terminé</button>
                 <Link to="/" className="btn btn-outline-secondary">Annulé</Link>
             </form>
@@ -48,16 +55,16 @@ class NewPost extends React.Component {
 function validate(values) {
     const errors = {};
 
-    if (!values.title) errors.title = "Titre manquant";
-    if (!values.categories) errors.categories = "Categories manquantes";
-    if (!values.content) errors.content = "Message manquant";
+    fields.forEach(f => {
+        if (!values[f.name]) errors[f.name] = f.errorMessage;
+    });
 
     return errors;
 }
 
 const config = {
     form: 'NewPostForm',
-    fields: ['title', 'categories', 'content'],
+    fields: fields.map(f => f.name),
     validate
 };
 
