@@ -1,5 +1,7 @@
 /node_modules
 bundle.js
+bundle.js.map
+/dist
 npm-debug.log
 
 # IntelliJ

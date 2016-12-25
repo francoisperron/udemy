@@ -7,7 +7,11 @@
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "clean": "rm -rf dist && mkdir dist",
+    "prebuild": "npm run clean -s",
+    "build": "./node_modules/.bin/webpack && cp -a index.html bundle.js bundle.js.map style dist",
+    "deploy": "firebase deploy"
   },
   "author": "",
   "license": "ISC",
