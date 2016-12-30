@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
-import {fetchPost, deletePost} from '../../actions/index';
+import {fetchPost, deletePost} from '../../posts_repo';
 
 class ShowPost extends React.Component {
     static contextTypes = {

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 import {reduxForm} from 'redux-form';
-import {createPost} from '../../actions/index';
+import {createPost} from '../../posts_repo';
 
 const fields = [
     {name: 'title', type: 'input', label: 'Titre', errorMessage: 'Titre manquant'},

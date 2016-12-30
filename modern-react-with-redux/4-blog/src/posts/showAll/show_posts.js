@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
-import {fetchPosts} from '../../actions/index';
+import {fetchPosts} from '../../posts_repo';
 
 class ShowPosts extends React.Component {
 
