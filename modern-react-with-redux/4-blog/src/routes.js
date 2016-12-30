@@ -1,9 +1,9 @@
 import React from 'react';
 import {Route, IndexRoute} from 'react-router';
-import App from './components/app';
-import Posts from './components/posts';
-import NewPost from './components/new_post';
-import ShowPost from './components/show_post';
+import App from './app';
+import Posts from './posts/showAll/show_posts';
+import NewPost from './posts/new/new_post';
+import ShowPost from './posts/showOne/show_post';
 
 export default (
     <Route path="/" component={App}>

@@ -1,9 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
-import {fetchPosts} from '../actions/index';
+import {fetchPosts} from '../../actions/index';
 
-class Posts extends React.Component {
+class ShowPosts extends React.Component {
 
     componentDidMount() {
         this.props.fetchPosts();
@@ -45,4 +45,4 @@ function mapStateToProps(state) {
     return {posts: state.posts.all};
 }
 
-export default connect(mapStateToProps, {fetchPosts})(Posts);
+export default connect(mapStateToProps, {fetchPosts})(ShowPosts);

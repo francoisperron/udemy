@@ -1,14 +1,13 @@
 import React from 'react';
 import {Link} from 'react-router';
 import {reduxForm} from 'redux-form';
-import {createPost} from '../actions/index';
+import {createPost} from '../../actions/index';
 
 const fields = [
     {name: 'title', type: 'input', label: 'Titre', errorMessage: 'Titre manquant'},
     {name: 'categories', type: 'input', label: 'Catégories', errorMessage: 'Categories manquantes'},
     {name: 'content', type: 'textarea', label: 'Message', errorMessage: 'Message manquant'},
 ];
-//['title', 'categories', 'content'];
 
 class NewPost extends React.Component {
     static contextTypes = {
