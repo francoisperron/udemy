@@ -42,7 +42,7 @@ class ShowPosts extends React.Component {
 }
 
 function mapStateToProps(state) {
-    return {posts: state.posts.all};
+    return {posts: state.posts};
 }
 
 export default connect(mapStateToProps, {fetchPosts})(ShowPosts);

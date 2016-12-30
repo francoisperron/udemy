@@ -8,7 +8,7 @@ class ShowPost extends React.Component {
         router: React.PropTypes.object
     };
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.onDeleteClick = this.onDeleteClick.bind(this);
     }
@@ -17,8 +17,10 @@ class ShowPost extends React.Component {
         this.props.fetchPost(this.props.params.id);
     }
 
-    onDeleteClick(){
-        this.props.deletePost(this.props.params.id).then(() => { this.context.router.push('/')});
+    onDeleteClick() {
+        this.props.deletePost(this.props.params.id).then(() => {
+            this.context.router.push('/')
+        });
     }
 
     render() {
@@ -44,7 +46,7 @@ class ShowPost extends React.Component {
 
 
 function mapStateToProps(state) {
-    return {post: state.posts.post};
+    return {post: state.selectedPost};
 
 }
 export default connect(mapStateToProps, {fetchPost, deletePost})(ShowPost);
