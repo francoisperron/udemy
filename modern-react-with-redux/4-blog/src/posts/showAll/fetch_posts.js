@@ -1,7 +1,7 @@
 import {FETCH_POSTS} from '../../posts_repo';
 
-export function all(state = [], action) {
-    if (action.type != FETCH_POSTS) return state;
+export function fetchPosts(posts = [], action) {
+    if (action.type == FETCH_POSTS) return action.payload.data;
 
-    return action.payload.data;
+    return posts;
 }

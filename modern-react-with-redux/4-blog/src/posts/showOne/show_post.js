@@ -54,8 +54,6 @@ class ShowPost extends React.Component {
 
 
 function mapStateToProps(state) {
-    console.log('state changed');
-    console.log(state.selectedPost);
     return {post: state.selectedPost};
 
 }
