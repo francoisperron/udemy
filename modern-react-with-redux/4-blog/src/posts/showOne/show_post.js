@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
-import {fetchPost, deletePost} from '../../posts_repo';
+import {deletePost} from '../../posts_repo';
 import {clearSelectedPost} from "./clear_selected_post";
 
 class ShowPost extends React.Component {
@@ -13,10 +13,6 @@ class ShowPost extends React.Component {
         super(props);
         this.onDeleteClick = this.onDeleteClick.bind(this);
         this.onReturnClick = this.onReturnClick.bind(this);
-    }
-
-    componentDidMount() {
-        this.props.fetchPost(this.props.params.id);
     }
 
     onDeleteClick() {
@@ -57,4 +53,4 @@ function mapStateToProps(state) {
     return {post: state.selectedPost};
 
 }
-export default connect(mapStateToProps, {fetchPost, deletePost, clearSelectedPost})(ShowPost);
+export default connect(mapStateToProps, {deletePost, clearSelectedPost})(ShowPost);
