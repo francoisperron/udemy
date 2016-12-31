@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
 import {fetchPost, deletePost} from '../../posts_repo';
+import {clearSelectedPost} from "./clear_selected_post";
 
 class ShowPost extends React.Component {
     static contextTypes = {
@@ -11,6 +12,7 @@ class ShowPost extends React.Component {
     constructor(props) {
         super(props);
         this.onDeleteClick = this.onDeleteClick.bind(this);
+        this.onReturnClick = this.onReturnClick.bind(this);
     }
 
     componentDidMount() {
@@ -23,22 +25,28 @@ class ShowPost extends React.Component {
         });
     }
 
+    onReturnClick() {
+        this.props.clearSelectedPost();
+    }
+
     render() {
         const {post} = this.props;
         if (!post) {
-            return <div>En recherche du blog...</div>
+            return <div></div>
         }
         return (
             <div>
-                <Link to="/">Retour...</Link>
+                <Link to="/" onClick={this.onReturnClick} className="btn btn-outline-secondary">Retour</Link>
                 <button
                     className="btn btn-outline-danger float-right"
                     onClick={this.onDeleteClick}>
                     Effacer
                 </button>
-                <h3>{post.title}</h3>
-                <h6>Catégories: {post.categories}</h6>
-                <p>{post.content}</p>
+                <div className="content">
+                    <h3>{post.title}</h3>
+                    <h6>Catégories: {post.categories}</h6>
+                    <p>{post.content}</p>
+                </div>
             </div>
         )
     }
@@ -46,7 +54,9 @@ class ShowPost extends React.Component {
 
 
 function mapStateToProps(state) {
+    console.log('state changed');
+    console.log(state.selectedPost);
     return {post: state.selectedPost};
 
 }
-export default connect(mapStateToProps, {fetchPost, deletePost})(ShowPost);
+export default connect(mapStateToProps, {fetchPost, deletePost, clearSelectedPost})(ShowPost);
