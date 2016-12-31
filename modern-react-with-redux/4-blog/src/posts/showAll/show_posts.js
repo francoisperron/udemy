@@ -1,13 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
-import {fetchPosts} from '../../posts_repo';
 
 class ShowPosts extends React.Component {
-
-    componentDidMount() {
-        this.props.fetchPosts();
-    }
 
     renderPosts() {
         return this.props.posts.map((post) => {
@@ -45,4 +40,4 @@ function mapStateToProps(state) {
     return {posts: state.posts};
 }
 
-export default connect(mapStateToProps, {fetchPosts})(ShowPosts);
+export default connect(mapStateToProps)(ShowPosts);

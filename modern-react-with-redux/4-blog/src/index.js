@@ -10,7 +10,7 @@ import reducers from './redux/reducers';
 import routes from './routes';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
-const store = createStoreWithMiddleware(reducers);
+export const store = createStoreWithMiddleware(reducers);
 
 const provider = <Provider store={store}>
     <Router history={browserHistory} routes={routes}/>
