@@ -1,0 +1,9 @@
+export const CLEAR_POST = 'CLEAR_POST';
+
+export function clearSelectedPost() {
+    console.log(CLEAR_POST);
+    return {
+        type: CLEAR_POST
+    };
+}
+
