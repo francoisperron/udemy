@@ -2,16 +2,21 @@ import React from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
 
-class ShowPosts extends React.Component {
+class View extends React.Component {
+
+}
+
+
+class ShowPosts extends View {
 
     renderPosts() {
         return this.props.posts.map((post) => {
             return (
-                <li className="list-group-item" key={post.id}>
+                <li className="list-group-item justify-content-between" key={post.id}>
                     <Link to={'posts/' + post.id}>
                         <strong>{post.title}</strong>
                     </Link>
-                    <span className="float-right">{post.categories}</span>
+                    <span>{post.categories}</span>
                 </li>
             )
         });
