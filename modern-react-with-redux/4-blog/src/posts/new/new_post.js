@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router';
+import {Link, browserHistory} from 'react-router';
 import {reduxForm} from 'redux-form';
 import {createPost} from '../../posts_repo';
 
@@ -10,9 +10,6 @@ const fields = [
 ];
 
 class NewPost extends React.Component {
-    static contextTypes = {
-        router: React.PropTypes.object
-    };
 
     constructor(props) {
         super(props);
@@ -22,14 +19,15 @@ class NewPost extends React.Component {
 
     onSubmit(props) {
         this.props.createPost(props).then(() => {
-            this.context.router.push('/')
+            browserHistory.push('/');
         });
     };
 
     renderField(field) {
         const formField = this.props.fields[field.name];
         return (
-            <div key={field.name} className={`form-group ${formField.touched && formField.invalid ? 'has-danger' : ''}`}>
+            <div key={field.name}
+                 className={`form-group ${formField.touched && formField.invalid ? 'has-danger' : ''}`}>
                 <label>{field.label}</label>
                 <field.type type="text" className="form-control form-control-danger" {...formField}/>
                 <div className="text-help text-danger small take-place">{formField.touched ? formField.error : ''}</div>
