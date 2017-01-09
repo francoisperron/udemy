@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, IndexRoute} from 'react-router';
 import App from './app';
-import Posts from './posts/showAll/show_posts';
+import Posts from './posts/showAll/posts_page';
 import NewPost from './posts/new/new_post';
 import ShowPost from './posts/showOne/show_post';
 
