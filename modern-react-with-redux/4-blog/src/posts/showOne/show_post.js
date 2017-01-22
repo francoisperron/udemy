@@ -1,13 +1,10 @@
 import React from 'react';
-import {Link} from 'react-router';
+import {Link, browserHistory} from 'react-router';
 import {connect} from 'react-redux';
 import {deletePost} from '../../posts_repo';
 import {clearSelectedPost} from "./clear_selected_post";
 
 class ShowPost extends React.Component {
-    static contextTypes = {
-        router: React.PropTypes.object
-    };
 
     constructor(props) {
         super(props);
@@ -17,7 +14,7 @@ class ShowPost extends React.Component {
 
     onDeleteClick() {
         this.props.deletePost(this.props.params.id).then(() => {
-            this.context.router.push('/')
+            browserHistory.push('/');
         });
     }
 
