@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 import {reducer as form} from 'redux-form';
-import {fetchPost} from '../posts/showOne/fetch_post';
+import {fetchPost} from '../posts/showOne/post_controller';
 import {fetchPosts} from '../posts/showAll/fetch_posts';
 
 const reducers = combineReducers({

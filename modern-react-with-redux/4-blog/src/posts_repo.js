@@ -3,7 +3,6 @@ import axios from 'axios';
 export const FETCH_POSTS = 'FETCH_POSTS';
 export const FETCH_POST = 'FETCH_POST';
 export const CREATE_POST = 'CREATE_POST';
-export const DELETE_POST = 'DELETE_POST';
 
 const BASE_URL = 'https://reduxblog.herokuapp.com/api';
 const API_KEY = '?key=fperron';
@@ -35,15 +34,6 @@ export function createPost(newPost) {
     };
 }
 
-export function deletePost(id) {
-    const request = axios.delete(`${BASE_URL}/posts/${id}${API_KEY}`);
-
-    return {
-        type: DELETE_POST,
-        payload: request
-    };
-}
-
-export function deletePost2(id, success) {
+export function deletePost(id, success) {
     axios.delete(`${BASE_URL}/posts/${id}${API_KEY}`).then(success);
 }
