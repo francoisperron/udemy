@@ -43,3 +43,7 @@ export function deletePost(id) {
         payload: request
     };
 }
+
+export function deletePost2(id, success) {
+    axios.delete(`${BASE_URL}/posts/${id}${API_KEY}`).then(success);
+}

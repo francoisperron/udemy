@@ -2,7 +2,7 @@
 bundle.js
 bundle.js.map
 /dist
-npm-debug.log
+npm-debug.log*
 
 # IntelliJ
 *.iml
