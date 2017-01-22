@@ -23,22 +23,28 @@ class ShowPost extends React.Component {
             return <div></div>
         }
         return (
-            <div>
-                <Link to="/" onClick={this.props.clearSelectedPost} className="btn btn-outline-secondary">Retour</Link>
-                <button
-                    className="btn btn-outline-danger float-right"
-                    onClick={this.onDeleteClick}>
-                    Effacer
-                </button>
-                <div className="content">
-                    <h3>{post.title}</h3>
-                    <h6>Catégories: {post.categories}</h6>
-                    <p>{post.content}</p>
-                </div>
-            </div>
+            <PostPage post={post} onReturn={this.props.clearSelectedPost} onDelete={this.onDeleteClick} />
         )
     }
 }
+
+const PostPage = ({post, onReturn, onDelete}) => {
+    return (
+        <div>
+            <Link to="/" onClick={onReturn} className="btn btn-outline-secondary">Retour</Link>
+            <button
+                className="btn btn-outline-danger float-right"
+                onClick={onDelete}>
+                Effacer
+            </button>
+            <div className="content">
+                <h3>{post.title}</h3>
+                <h6>Catégories: {post.categories}</h6>
+                <p>{post.content}</p>
+            </div>
+        </div>
+    )
+};
 
 
 function mapStateToProps(state) {
