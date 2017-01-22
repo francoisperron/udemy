@@ -9,17 +9,12 @@ class ShowPost extends React.Component {
     constructor(props) {
         super(props);
         this.onDeleteClick = this.onDeleteClick.bind(this);
-        this.onReturnClick = this.onReturnClick.bind(this);
     }
 
     onDeleteClick() {
         this.props.deletePost(this.props.params.id).then(() => {
             browserHistory.push('/');
         });
-    }
-
-    onReturnClick() {
-        this.props.clearSelectedPost();
     }
 
     render() {
@@ -29,7 +24,7 @@ class ShowPost extends React.Component {
         }
         return (
             <div>
-                <Link to="/" onClick={this.onReturnClick} className="btn btn-outline-secondary">Retour</Link>
+                <Link to="/" onClick={this.props.clearSelectedPost} className="btn btn-outline-secondary">Retour</Link>
                 <button
                     className="btn btn-outline-danger float-right"
                     onClick={this.onDeleteClick}>
